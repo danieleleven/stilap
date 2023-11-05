@@ -1,0 +1,817 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{ /*Body en flujo normal donde inserto el tipo de letra y el font-weight que de manera general quiero que se mantenga en toda la página especialmente en textos*/
+    font-family: Poppins;
+    font-weight: 300;
+}
+
+
+/*------------------------------------------------------------------------------------------------Barra de navegación*/
+
+header{/* Lo que quiero es que se mantengan opuestamente separados el logo del nav*/
+    display: flex;
+    justify-content: space-between;   
+}
+
+header img{/*De aquí en adelante trabajaré en rem ya que recuerdo ( de una clase) que podría ser una buena práctica de frontend (medida relacionada con el tamaño de la fuente*/
+    width: 12rem;
+    padding: 1.5rem;
+}
+
+nav, nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+nav ul li a{
+    text-decoration: none;
+    margin-right: 2.5rem;
+    color: #494949;
+
+}
+
+nav ul li span{/*Esto es simplemente para cambiar el color de una fuente de un solo li*/
+    font-weight: 600;
+    color:#3f517d;
+}
+
+
+nav button{/*Reglas para estilizar el boton de "Solicita una demo, donde he querido dar un gradiente como fondo*/
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 11rem;
+    height: 3rem;
+    color: white;
+    border-radius: 0.4rem;
+    margin-left: 3rem;
+    margin-right: 4rem;
+    cursor: pointer;
+    background: linear-gradient(to right, #3f517d 47%, #eac65a 100%);
+    box-shadow: 0px 5px 10px rgba(11, 38, 71, 0.5);
+   
+   
+}
+
+.abrirMenu{ /*Logo burger de menu*/
+    display: none;
+    width: 4rem;
+}
+
+
+/*-------------------------------------------------------------------------------@media de la barra de navegación*/
+
+@media screen and (max-width:900px) { /* A partir de 900px desaparecerá la info del nav para dar lugar al lodo de burger*/
+    nav ul, nav button{
+        display: none;
+    }
+
+    .abrirMenu{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width:500px) {/*Es un pequeño ajuste para cuando la pantalla esta cerca de la medida móvil*/
+    .abrirMenu{
+        width: 3rem;    
+    }
+}
+
+/*------------------------------------------------------------------------------------------------Sección login*/
+
+.logIn{ /* El wrap es para cuando nos encontramos con pantallas móvil el responsive haga que pase a ocupar una nueva linea*/
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+}
+
+.logInVisible{  /*Para JS*/
+    display: flex;
+}
+
+input[type="submit"]{/*He querido usar este selector y se trata de hacer el botón tipo cápsula*/
+    width: 7rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #3f517d;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 2rem;
+    color: white;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+
+.logIn input, p{
+    margin-left: 1rem;
+}
+
+.logOut{/*Para que aparezca como "conectado" el usuario que hace login*/
+    font-size: 0.8rem;
+    font-weight: bold;
+    color:#283350;
+    display: none;
+    cursor: pointer;
+}
+
+.logOutvisible{ /*Para JS*/
+    display: block;
+}
+/*------------------------------------------------------------------------------------------------Menú desplegable*/
+
+.menuBurger{ /*Uso el absolute para que tome como referencia el padre(body) y esconder en el top de la página el menu para que aparezca como un desplegable hacia abajo cuando se descubracon JSS*/
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 80vh;
+    background-color: #161c2c;
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: -55rem;
+    transition: top 1s ease;
+}
+
+.menuBurger section{ /*Para que todos los elementos este centrados*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuBurger a{
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+}
+
+.menuBurger button{ /*Este es el boton que dentro del menú hara la función de "Solicita una demo"*/
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.menuBurger img{ /*Esta es una "x" que hara en JS que se pliegue el menu hacia arriba*/
+    width: 4rem;
+    opacity: 0.9;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.menuBurgerVisible{ /*Para JS*/
+    top: -1rem;
+}
+
+
+/*------------------------------------------------------------------------------------------------Modal "Solicita una demo"*/
+
+
+.demo{ /* Esta modal hará que la pantalla tenga un fondo semitransparente y que la información aparezca centrada en la pantalla*/
+    position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100vh;
+	background-color:rgba(0,0,0,0.7);
+	display: none;
+    justify-content: center;
+	align-items:center;
+    z-index: 1;  /*Para que la modal aparezca por delante del menu*/
+}
+
+.demoVisible{
+    display: flex; /*Para JS*/
+}
+
+.demo .contenedor{
+    width: 30rem;
+    height: 40rem;
+    display: flex;
+    background-color: white;
+}
+
+.demo .contenedor .imagen{  /*Uso la imagen como backgorund por que es un elemento decorativo*/
+    width: 15rem;
+    background-image: url(../img/Telefonovintage.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.contenedor .informacion{  /*Esta es la sección del texto a la derecha de la imagen*/
+    width: 15rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.contenedor .informacion h3{
+    font-size: 3rem;
+    color: #283350;
+}
+
+.contenedor span{
+    background-color: #eac65a;
+}
+
+.contenedor input{  /*Este es el campo para poner el email*/
+    width: 14rem;
+    height: 1rem;
+}
+
+.contenedor button{
+    width: 7rem;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    background-color: #283350;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/*------------------------------------------------------------------------------------------------@media de "Solicita una demo*/
+
+@media screen and (max-width:500px) {
+    .demo .contenedor .imagen{
+        display: none;
+    
+    }
+    
+    .contenedor .informacion{
+        width: 100%;
+        
+    }
+}
+
+/*------------------------------------------------------------------------------------------------Slider principal*/
+
+.header{/*Lo posiciono en relative porque hay un contenedor mas abajo que quiero posicionar encima como absoluto*/
+    height: 90vh;
+    width: 100%;
+    position: relative;  
+}
+
+.header img{
+   object-fit: cover;
+   width: 100%;
+   height: 100%;  
+}
+
+.header .contenedor{
+    position: absolute;
+    width: 40rem;
+    bottom: 5rem;
+    right: 0;
+}
+
+.header h2{  
+    color:white;
+    font-size: 8.5rem;
+} 
+
+
+.header p{
+    color: white;
+    font-size: 3rem;
+}
+
+/*-----------------------------------------------------------------------------------------@media del slider principal*/
+
+@media screen and (max-width:700px) {
+    
+    .header h2{
+        font-size: 6rem;
+    }
+    
+    .header p{
+        font-size: 2rem;
+    }
+
+    .header .contenedor{/*Hasta este tipo de pantallas no me importa el ancho que ocupe el contenedor texto por eso lo pongo como auto y que se vaya aujustando segun el responsive*/
+        padding: 1rem;
+        width: auto;
+    }
+    
+}
+
+/*------------------------------------------------------------------------------------------Sección de empresas que confían en Stilap*/
+
+.empresas{ /*Esto hace que el texto introductorio se coloque arriba y el resto de logos abajo*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10rem;
+    background: linear-gradient(to bottom, #161c2c 20%, #283350 70%);
+    margin-bottom: 5rem;
+}
+
+.empresas p{
+    font-style: italic;
+    font-weight: 200;
+    color: #878787;
+    margin-top: 1rem;
+}
+
+.logoEmpresas{/* Lo que quiero en esta sección es mostrar los logos que estan en .svg y que ocupen el ancho de la pantalla con su separación*/
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+}
+
+.logoEmpresas div:nth-child(1){ /*Ya que he usado el background image he tenido que usar un selector para cada logo. Podría haber puesto una clase con las propiedades que comparten el resto pero igualmente tenia que usar uno para cada logo para poner la ruta de la imagen.*/
+    width: 7rem;
+    height: 7rem;
+    background-image: url(../img/logos_empresas/kubota-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+
+}
+.logoEmpresas  div:nth-child(2){
+    width: 7rem;
+    height: 7rem;
+    background-image: url(../img/logos_empresas/best-friends.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.logoEmpresas  div:nth-child(3){
+    width: 7rem;
+    height: 7rem;
+    background-image: url(../img/logos_empresas/indeed-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.logoEmpresas  div:nth-child(4){
+    width: 7rem;
+    height: 7rem;;
+    background-image: url(../img/logos_empresas/rothmans-3.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.logoEmpresas  div:nth-child(5){
+    width: 7rem;
+    height: 7rem;
+    background-image: url(../img/logos_empresas/whole-foods-1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/*------------------------------------------------------------------------------------------@media de logos de empresa*/
+
+@media screen and (max-width:700px) {
+    .logoEmpresas div:nth-child(even){
+        display: none;
+    }
+}
+
+@media screen and (max-width:500px) { /*En este punto he usado los selectores por separado porque al usar (even) como en el anterior no funcionaba*/
+    .logoEmpresas div:nth-child(1),.logoEmpresas div:nth-child(3),.logoEmpresas div:nth-child(5){
+        width: 5rem;
+    } 
+}
+
+/*------------------------------------------------------------------------------------------Sección de Imagen de mujer + texto*/
+
+.imagenTexto{/*Coloca la imagen y el texto una al lado de la otra*/
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imagenTexto img{
+    width: 40rem;
+}
+
+.cuadroTexto{ 
+    padding: 2rem;
+}
+
+.cuadroTexto h2{
+    font-size: 5rem;
+    color: #283350;
+    margin-bottom: 1rem;
+}
+
+.cuadroTexto h2 span{
+    background-color: #eac65a;
+}
+
+.cuadroTexto p{
+    font-size: 1rem; 
+}
+
+.cuadroTexto button{ /*Es el mismo botón que esta en el nav y con la misma función*/
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 11rem;
+    height: 3rem;
+    color: white;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    background: linear-gradient(to right, #3f517d 47%, #eac65a 100%);
+    box-shadow: 0px 5px 10px rgba(11, 38, 71, 0.5);
+}
+
+/*------------------------------------------------------------------------------------------@media de Imagen de mujer + texto*/
+
+@media screen and (max-width:1082px) {/* Es un ajuste ya que el texto colapsaba con la imagen demasiado pronto*/
+
+    .cuadroTexto h2{
+        font-size: 3rem;
+        color: #283350;
+        margin-bottom: 1rem;
+    }
+    .cuadroTexto p{
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width:900px) {/* Hace que pase a columna imagen y texto*/
+    .imagenTexto{
+        flex-direction: column;   
+    }    
+}
+
+/*----------------------------------------------------------------------------------Intro a servicios y showcase de servicios*/
+
+.introServicios{
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.introServicios h2{
+    font-size: 3rem;
+    color: #283350;
+}
+
+.productosCarrusel{ /* Contenedor donde van todos los divs para que ocupe todo el ancho y esten centrados*/
+    width: 100%;
+    height: 30rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.productosCarrusel div{ /*Definición de cada div donde ira imagen y texto del servicio*/
+    height: 35rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.8;
+    transition: 1s ease;
+    
+}
+
+.productosCarrusel a{
+    display: block;
+    height: 100%;
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.productosCarrusel a span{ /*Esto es cómo se mostrará el título de cada servicio*/
+    position: absolute;
+    top: 25rem;
+    left: 10rem;
+    display: none;
+    opacity: 0; 
+    transition: opacity 0.8s ease; 
+    
+}
+
+
+
+.producto1 a span,.producto2 a span{ /*Ajuste estético para que las letras se lean mejor según el fondo*/
+    color: #283350;
+}
+
+.producto1{
+    background-image: url(../img/Productos/Marketing.jpg);
+    width: 15rem;  
+}
+
+.producto1:hover{
+    opacity: 1;
+    width: 35rem;
+    filter: contrast(150%);/*Ajuste estético para saturar la imagén que viene de tener cierta transparencia y así destaque con mas intención la selección en ese momento*/
+}
+
+
+.producto2{
+    background-image: url(../img/Productos/Analitica.jpg);
+    width: 15rem;
+}
+
+.producto2:hover{
+    opacity: 1;
+    width: 35rem;
+    filter: contrast(150%);
+}
+
+.producto3{
+    background-image: url(../img/Productos/Optimización.jpg);
+    width: 15rem;
+}
+
+.producto3:hover{
+    opacity: 1;
+    width: 35rem;
+    filter: contrast(150%);
+}
+
+.producto4{
+    background-image: url(../img/Productos/influencers.jpg);
+    width: 15rem;    
+}
+
+.producto4:hover{
+    opacity: 1;
+    width: 35rem;
+    filter: contrast(150%);
+}
+
+.productosResponsive{ /*Es la clase que estará visible cuando la pantalla sea para tablet/mobile*/
+    margin: 5rem 0rem;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.productosResponsive a{
+    text-decoration: none;
+    color: #283350;
+    font-size: 3rem;
+}
+
+.productosResponsive span{
+    background-color: #eac65a;
+}
+
+/*----------------------------------------------------------------------------------@media de servicios*/ 
+
+@media screen and (max-width:1082px) {
+
+    .productosResponsive{
+        display: flex; 
+    }
+    .productosCarrusel{
+        display: none;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .introServicios h2{ /*Ajuste de tamaño en ese tipo de pantallas*/
+        font-size: 2rem; 
+    }
+}
+
+/*---------------------------------------------------------------------------------Carrusel de opiniones*/
+
+.introOpiniones{
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+
+.introOpiniones h3{
+    font-size: 2rem;
+    color: #283350;
+}
+
+.introOpiniones span{
+    background-color: #eac65a;
+}
+
+.opiniones{  
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 7rem;
+}
+
+.opiniones img{
+    width: 2rem;
+    cursor: pointer;
+}
+
+.tarjetas{ /*Contenedor donde ubica dentro las reseñas*/
+    width: 45rem;
+    margin-bottom: 3rem;
+}
+
+
+.tarjeta{ 
+    display: none;
+    flex-wrap: wrap;
+}
+
+.tarjetaOn{ /*Para JS*/
+    display: flex;
+}
+
+.credenciales{ /*La información personal al lado de la imagen*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.credenciales h4{
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.foto1, .foto2, .foto3, .foto4{
+    width: 8rem;
+    height: 8rem;
+    background-image: url(../img/Personas/persona1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 2rem;
+    margin: 2rem 2rem;
+}
+
+.foto2{
+    background-image: url(../img/Personas/persona2.jpg);
+}
+.foto3{
+    background-image: url(../img/Personas/persona3.jpg);
+}
+.foto4{
+    background-image: url(../img/Personas/persona4.jpg);
+}
+
+.opiniones .botones{
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*--------------------------------------------------------------------------------@media de Opiniones*/
+
+@media screen and (max-width:900px) { /* Todos son ajustes para poder mantener este apartado tambien en versiones móviles*/
+
+    .tarjetas{
+        width: 30rem;  
+    }
+
+    .tarjeta{
+        height: 20rem;
+    }
+
+}
+
+@media screen and (max-width:500px) {
+
+    .tarjetas{
+        width: 20rem;    
+    }
+
+    .tarjeta{
+        height: 25rem;
+    }  
+    
+}
+
+/*----------------------------------------------------------------------------------Intro a footer y footer*/
+
+.amarillo{ /*Detalle de linea amarilla antes del footer*/
+    width: 100%;
+    height: 1rem;
+    background-color: #eac65a;
+}
+
+footer{
+    height: fit-content;/*Esta propiedad me ha permitido que el contenido se ajuste al fondo concretamente en versiones móviles y que el texto no desbordara*/
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 15rem;
+    background: linear-gradient(to bottom, #161c2c 20%, #283350 70%);
+}
+
+footer ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul a{
+    text-decoration: none;
+    margin-right: 1rem;
+    color: white;
+}
+
+footer img{ /* Imagen del logo Stilap en blanco*/
+    width: 10rem;
+}
+
+footer p{
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: white;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/*------------------------------------------------------------------------------------------------@media de Footer*/
+
+@media screen and (max-width:500px) {
+
+  footer{
+   height: fit-content;
+  } 
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    
+    
+  
+
+
+
+
+
+
+

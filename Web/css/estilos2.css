@@ -1,0 +1,452 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{ /*Body en flujo normal donde inserto el tipo de letra y el font-weight que de manera general quiero que se mantenga en toda la página especialmente en textos*/
+    font-family: Poppins;
+    font-weight: 300;
+}
+
+
+/*------------------------------------------------------------------------------------------------Barra de navegación*/
+
+header{/* Lo que quiero es que se mantengan opuestamente separados el logo del nav*/
+    display: flex;
+    justify-content: space-between;   
+}
+
+header img{/*De aquí en adelante trabajaré en rem ya que recuerdo ( de una clase) que podría ser una buena práctica de frontend (medida relacionada con el tamaño de la fuente*/
+    width: 12rem;
+    padding: 1.5rem;
+}
+
+nav, nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+nav ul li a{
+    text-decoration: none;
+    margin-right: 2.5rem;
+    color: #494949;
+
+}
+
+nav ul li span{/*Esto es simplemente para cambiar el color de una fuente de un solo li*/
+    font-weight: 600;
+    color:#3f517d;
+}
+
+
+nav button{/*Reglas para estilizar el boton de "Solicita una demo, donde he querido dar un gradiente como fondo*/
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 11rem;
+    height: 3rem;
+    color: white;
+    border-radius: 0.4rem;
+    margin-left: 3rem;
+    margin-right: 4rem;
+    cursor: pointer;
+    background: linear-gradient(to right, #3f517d 47%, #eac65a 100%);
+    box-shadow: 0px 5px 10px rgba(11, 38, 71, 0.5);
+   
+   
+}
+
+.abrirMenu{ /*Logo burger de menu*/
+    display: none;
+    width: 4rem;
+}
+
+
+/*-------------------------------------------------------------------------------@media de la barra de navegación*/
+
+@media screen and (max-width:900px) { /* A partir de 900px desaparecerá la info del nav para dar lugar al lodo de burger*/
+    nav ul, nav button{
+        display: none;
+    }
+
+    .abrirMenu{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width:500px) {/*Es un pequeño ajuste para cuando la pantalla esta cerca de la medida móvil*/
+    .abrirMenu{
+        width: 3rem;    
+    }
+}
+
+/*------------------------------------------------------------------------------------------------Sección login*/
+
+.logIn{ /* El wrap es para cuando nos encontramos con pantallas móvil el responsive haga que pase a ocupar una nueva linea*/
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+}
+
+.logInVisible{  /*Para JS*/
+    display: flex;
+}
+
+input[type="submit"]{/*He querido usar este selector y se trata de hacer el botón tipo cápsula*/
+    width: 7rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #3f517d;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 2rem;
+    color: white;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+
+.logIn input, p{
+    margin-left: 1rem;
+}
+
+.logOut{/*Para que aparezca como "conectado" el usuario que hace login*/
+    font-size: 0.8rem;
+    font-weight: bold;
+    color:#283350;
+    display: none;
+    cursor: pointer;
+}
+
+.logOutvisible{ /*Para JS*/
+    display: block;
+}
+/*------------------------------------------------------------------------------------------------Menú desplegable*/
+
+.menuBurger{ /*Uso el absolute para que tome como referencia el padre(body) y esconder en el top de la página el menu para que aparezca como un desplegable hacia abajo cuando se descubracon JSS*/
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 80vh;
+    background-color: #161c2c;
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: -55rem;
+    transition: top 1s ease;
+}
+
+.menuBurger section{ /*Para que todos los elementos este centrados*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuBurger a{
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+}
+
+.menuBurger button{ /*Este es el boton que dentro del menú hara la función de "Solicita una demo"*/
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.menuBurger img{ /*Esta es una "x" que hara en JS que se pliegue el menu hacia arriba*/
+    width: 4rem;
+    opacity: 0.9;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.menuBurgerVisible{ /*Para JS*/
+    top: -1rem;
+}
+
+
+/*------------------------------------------------------------------------------------------------Modal "Solicita una demo"*/
+
+
+.demo{ /* Esta modal hará que la pantalla tenga un fondo semitransparente y que la información aparezca centrada en la pantalla*/
+    position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100vh;
+	background-color:rgba(0,0,0,0.7);
+	display: none;
+    justify-content: center;
+	align-items:center;
+    z-index: 1;  /*Para que la modal aparezca por delante del menu*/
+}
+
+.demoVisible{
+    display: flex; /*Para JS*/
+}
+
+.demo .contenedor{
+    width: 30rem;
+    height: 40rem;
+    display: flex;
+    background-color: white;
+}
+
+.demo .contenedor .imagen{  /*Uso la imagen como backgorund por que es un elemento decorativo*/
+    width: 15rem;
+    background-image: url(../img/Telefonovintage.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.contenedor .informacion{  /*Esta es la sección del texto a la derecha de la imagen*/
+    width: 15rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.contenedor .informacion h3{
+    font-size: 3rem;
+    color: #283350;
+}
+
+.contenedor span{
+    background-color: #eac65a;
+}
+
+.contenedor input{  /*Este es el campo para poner el email*/
+    width: 14rem;
+    height: 1rem;
+}
+
+.contenedor button{
+    width: 7rem;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    background-color: #283350;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/*------------------------------------------------------------------------------------------------@media de "Solicita una demo*/
+
+@media screen and (max-width:500px) {
+    .demo .contenedor .imagen{
+        display: none;
+    
+    }
+    
+    .contenedor .informacion{
+        width: 100%;
+        
+    }
+}
+
+/*------------------------------------------------------------------------------------------------Header de servicios*/
+
+.headerServicios{ /*Un contenedor que pondrá a la imagen y el texto horizontalmente*/
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 6rem;
+}
+
+.headerServicios div{
+    width: 45rem;
+    height: 30rem;
+    background-image: url(../img/ventana.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.headerServicios h2{
+    padding: 2rem;
+    font-size: 3rem;
+    color: #283350;
+}
+
+/*----------------------------------------------------------------------------------------------@media de Header de servicios*/
+
+@media screen and (max-width:900px) {
+
+    .headerServicios{
+        flex-direction: column;
+    }
+    
+}
+
+/*----------------------------------------------------------------------------------------------Contenedor Grid con servicios*/
+
+.serviciosContainer{
+    display: grid;
+    grid-template-columns: auto auto; /*Esto crea dos columnas y las filas las determinan el contenido, en este caso 8 divs*/
+    padding: 3rem 5rem;   
+}
+  
+.serviciosContainer div { /*Esto esta pensando para los divs que tienen h2 y texto y necesitan centrarse y alinearse dentro del div*/ 
+    height: 25rem;
+    padding: 10px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.serviciosContainer h2{
+    font-size: 2rem;
+    color: #283350;
+}
+
+.serviciosContainer h2 span{
+    background-color: #eac65a;
+}
+
+.serviciosContainer .item1{
+    background-image: url(../img/Productos/Marketing.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.serviciosContainer .item4{
+    background-image: url(../img/Productos/Analitica.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.serviciosContainer .item5{
+    background-image: url(../img/Productos/Optimización.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.serviciosContainer .item8{
+    background-image: url(../img/Productos/influencers.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*----------------------------------------------------------------------------------------------Contenedor Grid con servicios*/
+  
+@media screen and (max-width:950px) {
+
+   .serviciosContainer{ /* Esto hace que pase a una columna en lugar de dos y que se desactive el grid*/
+    display: flex;
+    flex-direction: column;
+   }
+
+   .serviciosContainer .item4{ /*Quito una imagen para por motivos estéticos*/
+    display: none;
+   }
+    
+}
+
+@media screen and (max-width:600px) {
+
+    .serviciosContainer{ /*Ajustamos el padding para este tamaño de pantallas*/
+     padding: 2rem 2rem;
+    }
+ 
+    .serviciosContainer .item4{/* Elimino ciertas imagenes por motivos estéticos en pantallas mas pequeñas*/
+     display: none;
+    }
+
+    .serviciosContainer div {
+        height: 40rem;
+    }
+
+    .serviciosContainer .item1  {
+        display: none;
+    }
+
+    .serviciosContainer .item8  {
+        display: none;
+    }
+        
+}    
+
+/*----------------------------------------------------------------------------------Intro a footer y footer*/
+
+.amarillo{ /*Detalle de linea amarilla antes del footer*/
+    width: 100%;
+    height: 1rem;
+    background-color: #eac65a;
+}
+
+footer{
+    height: fit-content;/*Esta propiedad me ha permitido que el contenido se ajuste al fondo concretamente en versiones móviles y que el texto no desbordara*/
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 15rem;
+    background: linear-gradient(to bottom, #161c2c 20%, #283350 70%);
+}
+
+footer ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul a{
+    text-decoration: none;
+    margin-right: 1rem;
+    color: white;
+}
+
+footer img{ /* Imagen del logo Stilap en blanco*/
+    width: 10rem;
+}
+
+footer p{
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: white;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/*------------------------------------------------------------------------------------------------@media de Footer*/
+
+@media screen and (max-width:500px) {
+
+  footer{
+   height: fit-content;
+  } 
+    
+}
